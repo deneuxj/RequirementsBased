@@ -13,6 +13,8 @@ This repository is organized as a requirements-based delivery flow with top-leve
 - `design/` for design-level requirements
 - `implementation/` for source code
 - `verification/` for verification of implementation, typically automated tests
+- `planning/` for internal work planning and sequencing (non-deliverable tracking aid)
+- `execution/` for reports of executed plan parts (non-deliverable tracking aid)
 
 Work should preserve traceability across these phases (requirements -> design -> implementation and verification).
 
@@ -27,3 +29,4 @@ Implementation and verification can be traced back to design requirements. Verif
 - Keep artifacts in the phase-specific top-level directory rather than mixing phase outputs.
 - Treat this repository as process-first: architecture/design/verification artifacts are first-class deliverables alongside implementation.
 - Maintain forward traceability when adding new artifacts by linking related items across phase directories.
+- Use `planning/` and `execution/` only for internal progress tracking artifacts, not product deliverables.
