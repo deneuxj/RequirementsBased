@@ -37,7 +37,8 @@ These requirements describe player-visible behavior and constraints. Design and 
 | UR-019 | The targeted deployment platform shall be gaming PCs running Windows or Linux. | Constrains runtime compatibility and technology choices to intended player environments. | Builds are available and runnable on supported Windows and Linux gaming PC configurations. |
 | UR-020 | Recommended player system specifications shall include AMD Ryzen 7 5800X CPU, 32 GB RAM, and NVIDIA RTX 3080 GPU. | Defines a concrete performance target for development, testing, and player expectations. | Product documentation and test environments include the stated recommended specification baseline. |
 | UR-021 | It shall be possible to save gameplay at any point and load saved gameplay later for both player continuation and developer testing/development, including loading saves created by older versions when those versions are compatible with the running version. | Supports uninterrupted player progression and reproducible development/testing workflows across compatible releases. | A user can create and load saves at arbitrary gameplay points; developers can load saves for testing; and compatibility-defined older-version saves load successfully on the current compatible build. |
+| UR-022 | The development process shall be requirements-based and traceable, with tool support to track links between user requirements, design components, implementation work, and verification evidence. | Ensures controlled delivery and measurable conformance across the full engineering lifecycle. | For each implemented scope item, trace links from requirement to design, implementation, and verification evidence are recorded and queryable. |
 
 ## Traceability Seeds
-- Design requirements should reference IDs `UR-001` through `UR-021`.
+- Design requirements should reference IDs `UR-001` through `UR-022`.
 - Verification artifacts should map test cases to these same IDs.

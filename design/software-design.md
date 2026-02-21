@@ -7,7 +7,7 @@
 - Inputs: `architecture\architecture-breakdown.md`, `architecture\adr-001-unreal-engine.md`, `architecture\adr-002-tooling-language-fsharp.md`, `user-requirements\user-requirements.md`
 
 ## Purpose
-Define software design components (modules, tools, and services) that realize `UR-001` through `UR-021`.
+Define software design components (modules, tools, and services) that realize `UR-001` through `UR-022`.
 
 ## Design Components
 
@@ -26,9 +26,11 @@ Define software design components (modules, tools, and services) that realize `U
 | DC-10 | Level Designer | Tool (editor) | Unreal Editor extensions | Author/edit 3D level geometry and associated editor workflows. | DC-13 | UR-011 |
 | DC-11 | Mission Designer | Tool (editor) | Unreal Editor extensions + data schemas | Author spawn/save/objective/event/trigger mission data and behavior links. | DC-13 | UR-012 |
 | DC-12 | Asset/Content Validator | Tool (external) | F# (.NET), optional C# host | Validate mission links, spawn validity, schema conformance, content integrity. | DC-10, DC-11 | UR-011, UR-012, UR-015, UR-018 |
+| DC-21 | Requirements Traceability Tooling | Tool (external) | F# (.NET), optional C# host + SQLite/JSON | Maintain requirement-design-implementation-verification link records and provide query/report generation for conformance status. | None (foundational) | UR-015, UR-018, UR-022 |
+| DC-22 | Planning & Execution Tracking Tooling | Tool (external/process support) | F#/.NET + SQL + Markdown automation | Maintain actionable work backlog, dependency tracking, and execution report synchronization with traceability links. | DC-21 | UR-018, UR-022 |
 | DC-13 | Diagnostics API & Logging | Service/runtime support | Unreal C++, structured logs | Expose runtime diagnostics via logs/API, component traces, AI decision traces. | DC-01..DC-11 | UR-016, UR-018 |
 | DC-14 | Telemetry & Dashboard | Service | TS/JS or .NET service + storage | Ingest diagnostics, provide dashboards for iteration/debug loops. | DC-13 | UR-016, UR-018 |
-| DC-15 | Automated Verification Pipeline | Service/automation | CI + PowerShell/Bash + F# tooling | Build/test orchestration, requirement-mapped test evidence publishing. | DC-12, DC-13, DC-19 | UR-015, UR-018, UR-021 |
+| DC-15 | Automated Verification Pipeline | Service/automation | CI + PowerShell/Bash + F# tooling | Build/test orchestration, requirement-mapped test evidence publishing. | DC-12, DC-13, DC-19, DC-21 | UR-015, UR-018, UR-021, UR-022 |
 | DC-16 | Platform Packaging | Service/automation | Unreal build tooling + CI scripts | Build/package/validate Windows and Linux outputs. | DC-15 | UR-019 |
 | DC-17 | Performance Baseline Runner | Service/tool | Automated benchmark scenarios | Run benchmark scenes/scenarios aligned to recommended hardware baseline. | DC-09, DC-16 | UR-020 |
 | DC-18 | Save/Load Persistence | Runtime module | Unreal C++ + SaveGame serialization | Save at arbitrary points, load saved gameplay for players/developers, enforce compatibility-gated old-save loading. | DC-01, DC-03, DC-04, DC-06, DC-20 | UR-021 |
@@ -39,6 +41,7 @@ Define software design components (modules, tools, and services) that realize `U
 - Mission and level authoring outputs are versioned data assets consumed by runtime modules.
 - Diagnostics events use structured schemas so automated tools can correlate failures to requirement IDs.
 - Save data uses explicit versioned schemas with compatibility checks and migration/adapter paths where required.
+- Traceability records use stable IDs (requirement IDs, component IDs, work item IDs, verification IDs) to support end-to-end impact analysis.
 
 ## Technology Allocation Rules
 - Runtime gameplay authority: **C++**.
@@ -47,6 +50,6 @@ Define software design components (modules, tools, and services) that realize `U
 - **C#** allowed only where framework-required (host/entry-point/integration boundaries).
 
 ## Traceability Notes
-- Full requirement coverage target: `UR-001`..`UR-021`.
+- Full requirement coverage target: `UR-001`..`UR-022`.
 - Asset planning reference: `design\asset-needs-by-requirement.md`.
 - Architecture references: `architecture\architecture-breakdown.md`, `architecture\technology-candidates.md`.
