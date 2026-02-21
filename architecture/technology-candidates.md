@@ -1,7 +1,7 @@
 # Technology Candidates for User Requirements
 
 ## Context
-This document identifies relevant potential technologies to satisfy `UR-001` through `UR-016` in `user-requirements\user-requirements.md`.
+This document identifies relevant potential technologies to satisfy `UR-001` through `UR-020` in `user-requirements\user-requirements.md`.
 
 ## Candidate Product Stacks
 
@@ -10,18 +10,21 @@ This document identifies relevant potential technologies to satisfy `UR-001` thr
 - **Why relevant:** Strong FPS/third-person foundations (`UR-001`, `UR-002`), mature AI/behavior tooling for defensive non-controlled squad behavior (`UR-009`), broad VR support (`UR-014`), and high-fidelity world tooling.
 - **Designer support:** Built-in level tools + Data Assets + Sequencer/Gameplay Ability System extensions for mission/event authoring (`UR-011`, `UR-012`).
 - **Testing/diagnostics:** Unreal Automation Framework + Functional Tests (`UR-015`), Unreal Insights + structured logs and telemetry bridges (`UR-016`).
+- **AI-assisted development fit:** Strong documentation ecosystem, mature build/test automation hooks, and broad example/code asset availability for coding-agent workflows (`UR-018`).
 
 ### Option B: Unity + DOTS/Netcode-Compatible Architecture
 - **Engine/runtime:** Unity (C#), URP/HDRP depending on target hardware
 - **Why relevant:** Fast iteration for gameplay prototypes, flexible custom timeline/rewind implementation (`UR-003` to `UR-008`), mature package ecosystem.
 - **Designer support:** Scene tools + ProBuilder for geometry (`UR-011`), custom mission editor windows/ScriptableObjects for objectives/triggers/events (`UR-012`).
 - **Testing/diagnostics:** Unity Test Framework + PlayMode tests (`UR-015`), Unity Profiler + structured logging/OpenTelemetry exporters (`UR-016`).
+- **AI-assisted development fit:** Large knowledge base and tooling ecosystem, though project-specific editor scripting often needs tighter guardrails for consistent agent output (`UR-018`).
 
 ### Option C: Godot 4 (Open-Source Path)
 - **Engine/runtime:** Godot 4 (GDScript/C#)
 - **Why relevant:** Lower licensing friction and rapid tooling customization; suitable for smaller-scope tactical shooter prototypes.
 - **Designer support:** Native scene editing for geometry and triggers with custom editor plugins (`UR-011`, `UR-012`).
 - **Testing/diagnostics:** GUT/WAT testing frameworks and custom trace/log APIs (`UR-015`, `UR-016`).
+- **AI-assisted development fit:** Lightweight architecture is agent-friendly, but smaller ecosystem depth can increase custom implementation effort (`UR-018`).
 - **Constraint:** Higher engineering investment for AAA-style shooter fidelity and VR polish compared to Unreal/Unity.
 
 ## Cross-Cutting Technology Building Blocks
@@ -45,6 +48,12 @@ This document identifies relevant potential technologies to satisfy `UR-001` thr
 - **Diagnostics (`UR-016`):**
   - Structured logging standard (JSON/event schema)
   - Runtime diagnostics API (state snapshots, trigger/event traces, AI decision traces)
+- **AI-first delivery model (`UR-018`):**
+  - CI-friendly command-line build/test workflows for agent automation
+  - Stable coding standards and template projects for repeatable AI edits
+- **Target platform (`UR-019`) and baseline specs (`UR-020`):**
+  - Primary build/release targets: Windows and Linux gaming PCs
+  - Performance tuning baseline around Ryzen 7 5800X, 32 GB RAM, RTX 3080
 
 ## Initial Recommendation
 Use **Option A (Unreal Engine 5)** as primary candidate due to fit for tactical shooter fidelity, VR support, mature testing/profiling, and strong built-in editor tooling that can be extended into the required level and mission designers.
@@ -55,3 +64,5 @@ Use **Option A (Unreal Engine 5)** as primary candidate due to fit for tactical 
 - `UR-013`: Weapon system and data-driven loadout content
 - `UR-014`: VR runtime and input stack
 - `UR-015`..`UR-016`: Verification and observability infrastructure
+- `UR-018`: AI-assisted development suitability
+- `UR-019`..`UR-020`: Platform targeting and recommended hardware baseline
