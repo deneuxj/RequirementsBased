@@ -1,7 +1,7 @@
 # Technology Candidates for User Requirements
 
 ## Context
-This document identifies relevant potential technologies to satisfy `UR-001` through `UR-020` in `user-requirements\user-requirements.md`.
+This document identifies relevant potential technologies to satisfy `UR-001` through `UR-021` in `user-requirements\user-requirements.md`.
 
 ## Candidate Product Stacks
 
@@ -54,6 +54,9 @@ This document identifies relevant potential technologies to satisfy `UR-001` thr
 - **Target platform (`UR-019`) and baseline specs (`UR-020`):**
   - Primary build/release targets: Windows and Linux gaming PCs
   - Performance tuning baseline around Ryzen 7 5800X, 32 GB RAM, RTX 3080
+- **Save/Load persistence and compatibility (`UR-021`):**
+  - Versioned save schema with compatibility matrix checks
+  - Save migration/adaptation support for older compatible versions
 
 ## Initial Recommendation
 Use **Option A (Unreal Engine 5)** as primary candidate due to fit for tactical shooter fidelity, VR support, mature testing/profiling, and strong built-in editor tooling that can be extended into the required level and mission designers.
@@ -66,3 +69,4 @@ Use **Option A (Unreal Engine 5)** as primary candidate due to fit for tactical 
 - `UR-015`..`UR-016`: Verification and observability infrastructure
 - `UR-018`: AI-assisted development suitability
 - `UR-019`..`UR-020`: Platform targeting and recommended hardware baseline
+- `UR-021`: Save/load persistence and compatible old-version save loading

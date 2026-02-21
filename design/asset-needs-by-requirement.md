@@ -28,6 +28,7 @@ Source requirements: `user-requirements\user-requirements.md` (`UR-001`..`UR-020
 | UR-018 | AI-agent-friendly development assets: coding templates, prompt/playbook assets, example scenes with known-good references. |
 | UR-019 | Platform delivery assets: Windows/Linux packaging configs, launcher icons, platform-specific startup/config templates. |
 | UR-020 | Performance baseline assets: benchmark replay scene, stress-test encounter setup, profiling capture presets targeting recommended hardware. |
+| UR-021 | Save/load assets: save-slot UI assets, save metadata/version indicators, compatibility test save corpus from older compatible versions. |
 
 ## Notes
 - Asset selection should prioritize high-quality free marketplace assets first, then custom content for uncovered gaps.

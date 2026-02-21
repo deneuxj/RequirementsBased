@@ -10,6 +10,7 @@
 - **Weapons & Combat Module (C++/Data Assets):** rifles, pistols, machine guns, shock/frag grenades (`UR-013`).
 - **VR Interaction Module (C++/XR plugins):** VR mode bootstrap, input bindings, VR HUD variants (`UR-014`).
 - **Prototype Scenario Module (C++/Data):** fixed level, hard-coded mission, fixed squad/loadout, stationary reactive enemies (`UR-017`).
+- **Save/Load Persistence Module (C++):** save at arbitrary gameplay points, load for player/developer workflows, and compatibility-gated loading of older-version saves (`UR-021`).
 
 ## 2) Authoring Tools
 - **Level Designer Toolchain (Editor extensions):** 3D geometry authoring, asset placement, collision/material presets (`UR-011`).
@@ -22,6 +23,7 @@
 - **Build/Test Orchestration Service (CI):** automated build, test execution, result publication, traceability evidence (`UR-015`, `UR-018`).
 - **Platform Packaging Service:** Windows/Linux build artifacts and release validation (`UR-019`).
 - **Performance Baseline Runner:** benchmark scenarios aligned with recommended hardware profile (`UR-020`).
+- **Save Compatibility Regression Service:** automated replay/load checks for archived saves from compatible historical versions (`UR-021`).
 
 ## 4) Language Allocation
 - **C++ + Blueprints:** runtime gameplay and editor integration.
@@ -33,10 +35,11 @@
 - **Unit tests:** module-level logic (timeline rules, engagement gating, data validators).
 - **Integration tests:** mission flow, rewind/replay consistency, switching behavior.
 - **Scenario tests:** prototype main loop and combat behavior checks.
-- **Traceability tests:** requirement-ID mapped pass/fail outputs for `UR-001`..`UR-020`.
+- **Compatibility tests:** save/load across versions declared compatible by the compatibility policy.
+- **Traceability tests:** requirement-ID mapped pass/fail outputs for `UR-001`..`UR-021`.
 
 ## 6) Suggested Delivery Sequence
-1. Prototype Scenario + Squad Control + Timeline/Rewind core.
+1. Prototype Scenario + Squad Control + Timeline/Rewind + Save/Load persistence core.
 2. Engagement Rules + Survival AI + HUD state clarity.
 3. Weapons module + fixed content completion.
 4. Level/Mission designer tooling and validators.

@@ -18,6 +18,7 @@ The product requires:
 - Rapid prototype delivery for main loop validation (`UR-017`)
 - AI-assisted development suitability and workflows (`UR-018`)
 - Target deployment on Windows/Linux gaming PCs with recommended baseline hardware (`UR-019`, `UR-020`)
+- Save-at-any-point/load support with compatible old-version save loading (`UR-021`)
 
 Technology candidates were evaluated in `architecture\technology-candidates.md`.
 
@@ -33,6 +34,7 @@ Use **Unreal Engine 5** (C++ with Blueprint integration) as the primary engine p
 - Vast availability of free marketplace assets that can accelerate prototype and early content development.
 - Strong ecosystem depth (documentation, examples, plugins, automation integrations) suitable for AI coding agent-led development.
 - Mature cross-platform packaging pipeline for Windows and Linux PC targets with practical performance profiling toolchain.
+- Built-in SaveGame/serialization mechanisms and extensible versioning patterns suitable for compatibility-managed save loading.
 
 ## Consequences
 ### Positive
@@ -45,5 +47,5 @@ Use **Unreal Engine 5** (C++ with Blueprint integration) as the primary engine p
 - Unreal project footprint and build times are typically larger than lighter-weight engines.
 
 ## Traceability
-- Primary user requirements addressed: `UR-001` through `UR-020`.
+- Primary user requirements addressed: `UR-001` through `UR-021`.
 - Related architecture document: `architecture\technology-candidates.md`.
