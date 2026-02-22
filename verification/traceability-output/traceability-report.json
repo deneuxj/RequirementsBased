@@ -1,0 +1,1536 @@
+{
+  "coverage": [
+    {
+      "mappedCount": 9,
+      "transition": "design-\u003Eimplementation",
+      "unmappedCount": 21,
+      "upperCount": 30
+    },
+    {
+      "mappedCount": 9,
+      "transition": "design-\u003Etest",
+      "unmappedCount": 21,
+      "upperCount": 30
+    },
+    {
+      "mappedCount": 22,
+      "transition": "user-\u003Edesign",
+      "unmappedCount": 0,
+      "upperCount": 22
+    }
+  ],
+  "diagnostics": [
+    {
+      "filePath": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "line": 41,
+      "message": "TRACE source \u0027DC-100\u0027 is not declared in authoritative requirement definitions.",
+      "severity": "warning"
+    },
+    {
+      "filePath": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "line": 41,
+      "message": "TRACE target \u0027TC-100\u0027 is not declared in authoritative requirement definitions.",
+      "severity": "warning"
+    }
+  ],
+  "findings": [
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-01",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-01 or TRACE:DC-01-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-01",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-01 or TRACE:DC-01-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-02",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-02 or TRACE:DC-02-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-02",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-02 or TRACE:DC-02-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-03",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-03 or TRACE:DC-03-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-03",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-03 or TRACE:DC-03-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-04",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-04 or TRACE:DC-04-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-04",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-04 or TRACE:DC-04-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-05",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-05 or TRACE:DC-05-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-05",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-05 or TRACE:DC-05-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-06",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-06 or TRACE:DC-06-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-06",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-06 or TRACE:DC-06-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-07",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-07 or TRACE:DC-07-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-07",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-07 or TRACE:DC-07-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-08",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-08 or TRACE:DC-08-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-08",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-08 or TRACE:DC-08-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-09",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-09 or TRACE:DC-09-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-09",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-09 or TRACE:DC-09-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-10",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-10 or TRACE:DC-10-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-10",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-10 or TRACE:DC-10-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-11",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-11 or TRACE:DC-11-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-11",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-11 or TRACE:DC-11-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-12",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-12 or TRACE:DC-12-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-12",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-12 or TRACE:DC-12-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-13",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-13 or TRACE:DC-13-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-13",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-13 or TRACE:DC-13-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-14",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-14 or TRACE:DC-14-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-14",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-14 or TRACE:DC-14-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-15",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-15 or TRACE:DC-15-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-15",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-15 or TRACE:DC-15-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-16",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-16 or TRACE:DC-16-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-16",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-16 or TRACE:DC-16-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-17",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-17 or TRACE:DC-17-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-17",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-17 or TRACE:DC-17-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-18",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-18 or TRACE:DC-18-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-18",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-18 or TRACE:DC-18-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-19",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-19 or TRACE:DC-19-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-19",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-19 or TRACE:DC-19-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-20",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-20 or TRACE:DC-20-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-20",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-20 or TRACE:DC-20-\u003E\u003Ctarget\u003E in test artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "implementation",
+      "id": "DC-22",
+      "reason": "No trace mapping from design to implementation.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-22 or TRACE:DC-22-\u003E\u003Ctarget\u003E in implementation artifacts."
+    },
+    {
+      "expectedDownstreamLayer": "test",
+      "id": "DC-22",
+      "reason": "No trace mapping from design to test.",
+      "severity": "error",
+      "suggestedAction": "Add REQ:DC-22 or TRACE:DC-22-\u003E\u003Ctarget\u003E in test artifacts."
+    }
+  ],
+  "links": [
+    {
+      "evidenceFile": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "evidenceLayer": "test",
+      "evidenceLine": 41,
+      "fromId": "DC-100",
+      "relation": "trace",
+      "toId": "TC-100"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 42,
+      "fromId": "UR-001",
+      "relation": "higher-level",
+      "toId": "DC-01"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 46,
+      "fromId": "UR-002",
+      "relation": "higher-level",
+      "toId": "DC-02"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 42,
+      "fromId": "UR-003",
+      "relation": "higher-level",
+      "toId": "DC-01"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 50,
+      "fromId": "UR-004",
+      "relation": "higher-level",
+      "toId": "DC-03"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 50,
+      "fromId": "UR-005",
+      "relation": "higher-level",
+      "toId": "DC-03"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 42,
+      "fromId": "UR-006",
+      "relation": "higher-level",
+      "toId": "DC-01"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 118,
+      "fromId": "UR-006",
+      "relation": "higher-level",
+      "toId": "DC-20"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 54,
+      "fromId": "UR-007",
+      "relation": "higher-level",
+      "toId": "DC-04"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 118,
+      "fromId": "UR-007",
+      "relation": "higher-level",
+      "toId": "DC-20"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 54,
+      "fromId": "UR-008",
+      "relation": "higher-level",
+      "toId": "DC-04"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 118,
+      "fromId": "UR-008",
+      "relation": "higher-level",
+      "toId": "DC-20"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 58,
+      "fromId": "UR-009",
+      "relation": "higher-level",
+      "toId": "DC-05"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 66,
+      "fromId": "UR-010",
+      "relation": "higher-level",
+      "toId": "DC-07"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 118,
+      "fromId": "UR-010",
+      "relation": "higher-level",
+      "toId": "DC-20"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 78,
+      "fromId": "UR-011",
+      "relation": "higher-level",
+      "toId": "DC-10"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 86,
+      "fromId": "UR-011",
+      "relation": "higher-level",
+      "toId": "DC-12"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 82,
+      "fromId": "UR-012",
+      "relation": "higher-level",
+      "toId": "DC-11"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 86,
+      "fromId": "UR-012",
+      "relation": "higher-level",
+      "toId": "DC-12"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 62,
+      "fromId": "UR-013",
+      "relation": "higher-level",
+      "toId": "DC-06"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 70,
+      "fromId": "UR-014",
+      "relation": "higher-level",
+      "toId": "DC-08"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 86,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "DC-12"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 98,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "DC-15"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 122,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "DC-21"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 28,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "TTR-001"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 32,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "TTR-002"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 48,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "TTR-006"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 56,
+      "fromId": "UR-015",
+      "relation": "higher-level",
+      "toId": "TTR-008"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 90,
+      "fromId": "UR-016",
+      "relation": "higher-level",
+      "toId": "DC-13"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 94,
+      "fromId": "UR-016",
+      "relation": "higher-level",
+      "toId": "DC-14"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 74,
+      "fromId": "UR-017",
+      "relation": "higher-level",
+      "toId": "DC-09"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 86,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "DC-12"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 90,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "DC-13"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 94,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "DC-14"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 98,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "DC-15"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 122,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "DC-21"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 126,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "DC-22"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 36,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "TTR-003"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 40,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "TTR-004"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 44,
+      "fromId": "UR-018",
+      "relation": "higher-level",
+      "toId": "TTR-005"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 102,
+      "fromId": "UR-019",
+      "relation": "higher-level",
+      "toId": "DC-16"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 106,
+      "fromId": "UR-020",
+      "relation": "higher-level",
+      "toId": "DC-17"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 98,
+      "fromId": "UR-021",
+      "relation": "higher-level",
+      "toId": "DC-15"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 110,
+      "fromId": "UR-021",
+      "relation": "higher-level",
+      "toId": "DC-18"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 114,
+      "fromId": "UR-021",
+      "relation": "higher-level",
+      "toId": "DC-19"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 118,
+      "fromId": "UR-021",
+      "relation": "higher-level",
+      "toId": "DC-20"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 98,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "DC-15"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 122,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "DC-21"
+    },
+    {
+      "evidenceFile": ".\\design\\software-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 126,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "DC-22"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 28,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "TTR-001"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 32,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "TTR-002"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 36,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "TTR-003"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 40,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "TTR-004"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 52,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "TTR-007"
+    },
+    {
+      "evidenceFile": ".\\design\\traceability-tool-design.md",
+      "evidenceLayer": "design",
+      "evidenceLine": 56,
+      "fromId": "UR-022",
+      "relation": "higher-level",
+      "toId": "TTR-008"
+    }
+  ],
+  "requirements": [
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-01",
+      "line": 41,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-010",
+      "line": 161,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-010",
+      "line": 162,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-02",
+      "line": 45,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-03",
+      "line": 49,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-04",
+      "line": 53,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-05",
+      "line": 57,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-06",
+      "line": 61,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-07",
+      "line": 65,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-08",
+      "line": 69,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-09",
+      "line": 73,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-10",
+      "line": 77,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-100",
+      "line": 41,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-101",
+      "line": 57,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-11",
+      "line": 81,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-12",
+      "line": 85,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-13",
+      "line": 89,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-14",
+      "line": 93,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-15",
+      "line": 97,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-16",
+      "line": 101,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-17",
+      "line": 105,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-18",
+      "line": 109,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-19",
+      "line": 113,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-20",
+      "line": 117,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "DC-20",
+      "line": 90,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-21",
+      "line": 121,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Cli\\Program.fs",
+      "id": "DC-21",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "DC-21",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-21",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\software-design.md",
+      "id": "DC-22",
+      "line": 125,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-300",
+      "line": 234,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "DC-300",
+      "line": 235,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TC-004",
+      "line": 90,
+      "requirementLayer": "test",
+      "sourceKind": "marker",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-001",
+      "line": 27,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-001",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-001",
+      "line": 144,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-002",
+      "line": 31,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-002",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-002",
+      "line": 129,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-002",
+      "line": 199,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-003",
+      "line": 35,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-003",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-003",
+      "line": 37,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-003",
+      "line": 53,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-004",
+      "line": 39,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Cli\\Program.fs",
+      "id": "TTR-004",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-004",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-004",
+      "line": 172,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-004",
+      "line": 216,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-005",
+      "line": 43,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-005",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-005",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-006",
+      "line": 47,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\README.md",
+      "id": "TTR-006",
+      "line": 9,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-006",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-007",
+      "line": 51,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-007",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-007",
+      "line": 65,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-007",
+      "line": 89,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "TTR-008",
+      "line": 55,
+      "requirementLayer": "design",
+      "sourceKind": "definition",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "TTR-008",
+      "line": 1,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-008",
+      "line": 65,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "TTR-008",
+      "line": 111,
+      "requirementLayer": "design",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-001",
+      "line": 17,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-002",
+      "line": 23,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-003",
+      "line": 29,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-004",
+      "line": 35,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-005",
+      "line": 41,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-006",
+      "line": 47,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-007",
+      "line": 53,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-008",
+      "line": 59,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-009",
+      "line": 65,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-010",
+      "line": 71,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "UR-010",
+      "line": 75,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-011",
+      "line": 77,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-012",
+      "line": 83,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-013",
+      "line": 89,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-014",
+      "line": 95,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "UR-015",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-015",
+      "line": 101,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "UR-015",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-016",
+      "line": 107,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-017",
+      "line": 113,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Cli\\Program.fs",
+      "id": "UR-018",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "UR-018",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-018",
+      "line": 119,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-019",
+      "line": 125,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-020",
+      "line": 131,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\design\\traceability-tool-design.md",
+      "id": "UR-021",
+      "line": 90,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "design"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-021",
+      "line": 137,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\.github\\skills\\traceability-coverage\\SKILL.md",
+      "id": "UR-022",
+      "line": 29,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "unknown"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Cli\\Program.fs",
+      "id": "UR-022",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs",
+      "id": "UR-022",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "implementation"
+    },
+    {
+      "file": ".\\user-requirements\\user-requirements.md",
+      "id": "UR-022",
+      "line": 143,
+      "requirementLayer": "user",
+      "sourceKind": "definition",
+      "sourceLayer": "user"
+    },
+    {
+      "file": ".\\verification\\traceability-tool-tests\\Tests.fs",
+      "id": "UR-022",
+      "line": 1,
+      "requirementLayer": "user",
+      "sourceKind": "marker",
+      "sourceLayer": "test"
+    }
+  ]
+}

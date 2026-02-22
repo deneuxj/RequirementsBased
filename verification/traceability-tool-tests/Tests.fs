@@ -1,4 +1,4 @@
-﻿// REQ:UR-015 REQ:UR-022 REQ:DC-21 REQ:TTR-006
+﻿// REQ:UR-015 REQ:UR-022 REQ:DC-21 REQ:TTR-005 REQ:TTR-006
 module Tests
 
 open System
@@ -34,6 +34,7 @@ let private designDefinitions (sections: string list) =
          @ sections)
 
 [<Fact>]
+// REQ:TTR-003
 let ``extractFromFile parses REQ and TRACE markers`` () =
     let root = createTempRoot ()
     let filePath = Path.Combine(root, "implementation", "sample.fs")
@@ -49,6 +50,7 @@ let ``extractFromFile parses REQ and TRACE markers`` () =
     Assert.Equal("TC-100", result.Links.Head.ToId)
 
 [<Fact>]
+// REQ:TTR-003
 let ``extractFromFile fallback works for unknown extension`` () =
     let root = createTempRoot ()
     let filePath = Path.Combine(root, "implementation", "notes.custom")
@@ -60,6 +62,7 @@ let ``extractFromFile fallback works for unknown extension`` () =
     Assert.Equal(Marker, result.Requirements.Head.SourceKind)
 
 [<Fact>]
+// REQ:TTR-007 REQ:TTR-008
 let ``definition extraction parses recognized requirement definition section`` () =
     let root = createTempRoot ()
     let filePath = Path.Combine(root, "design", "definitions.md")
@@ -83,6 +86,7 @@ let ``definition extraction parses recognized requirement definition section`` (
     Assert.Equal("higher-level", result.Links.Head.Relation)
 
 [<Fact>]
+// REQ:TTR-007
 let ``definition extraction ignores IDs outside recognized definition section`` () =
     let root = createTempRoot ()
     let filePath = Path.Combine(root, "design", "examples.md")
@@ -104,6 +108,7 @@ let ``definition extraction ignores IDs outside recognized definition section`` 
     Assert.Empty(result.Links)
 
 [<Fact>]
+// REQ:TTR-008
 let ``definition extraction does not create links for Higher-level requirements None`` () =
     let root = createTempRoot ()
     let filePath = Path.Combine(root, "design", "definitions.md")
@@ -121,6 +126,7 @@ let ``definition extraction does not create links for Higher-level requirements 
     Assert.Empty(result.Links)
 
 [<Fact>]
+// REQ:TTR-002
 let ``analyzeRoot reports unmapped user requirement`` () =
     let root = createTempRoot ()
 
@@ -135,6 +141,7 @@ let ``analyzeRoot reports unmapped user requirement`` () =
     Assert.NotEmpty(unmapped)
 
 [<Fact>]
+// REQ:TTR-001
 let ``analyzeRoot maps user to design and design to implementation and test`` () =
     let root = createTempRoot ()
 
@@ -162,6 +169,7 @@ let ``analyzeRoot maps user to design and design to implementation and test`` ()
     Assert.Empty(designFindings)
 
 [<Fact>]
+// REQ:TTR-004
 let ``toJson output ordering is deterministic by id`` () =
     let report =
         { Requirements =
@@ -188,6 +196,7 @@ let ``toJson output ordering is deterministic by id`` () =
     Assert.True(firstIndex >= 0 && secondIndex > firstIndex)
 
 [<Fact>]
+// REQ:TTR-002
 let ``cli analyze returns non-zero for policy violations`` () =
     let root = createTempRoot ()
     let outputDir = Path.Combine(root, "out")
@@ -204,6 +213,7 @@ let ``cli analyze returns non-zero for policy violations`` () =
     Assert.True(File.Exists(Path.Combine(outputDir, "traceability-report.json")))
 
 [<Fact>]
+// REQ:TTR-004
 let ``cli export jsonl writes ai consumable file`` () =
     let root = createTempRoot ()
     let outputDir = Path.Combine(root, "out")
