@@ -1,0 +1,12 @@
+# Build artifacts
+**/bin/
+**/obj/
+
+# Test artifacts
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# IDE artifacts
+.vs/

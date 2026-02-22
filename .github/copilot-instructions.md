@@ -2,8 +2,13 @@
 
 ## Build, test, and lint commands
 
-No build, test, or lint configuration files were found in this repository at the moment (no package manifests, project files, or test runner configs).  
-When adding implementation code, add the canonical build/test/lint commands here, including a single-test invocation.
+Traceability tool (.NET/F#) canonical commands:
+- Restore: `dotnet restore implementation\\traceability-tool\\TraceabilityTool.sln`
+- Build: `dotnet build implementation\\traceability-tool\\TraceabilityTool.sln --nologo`
+- Test (all): `dotnet test implementation\\traceability-tool\\TraceabilityTool.sln --nologo`
+- Test (single): `dotnet test verification\\traceability-tool-tests\\TraceabilityTool.Tests.fsproj --filter \"FullyQualifiedName~Tests.cli analyze returns non-zero for policy violations\" --nologo`
+
+No linter is configured yet for this repository.
 
 ## High-level architecture
 
