@@ -19,6 +19,20 @@ Define the design of a traceability tool that supports requirements-based delive
 | TTR-004 | Produce results in a format easily consumable by AI tools. |
 | TTR-005 | Implement the tool in F#. |
 | TTR-006 | Provide unit tests using xUnit. |
+| TTR-007 | Identify requirement definitions only from recognized requirement-definition sections in Markdown requirement/design artifacts to avoid accidental matches from examples. |
+
+## Authoritative Requirement Definition Rules
+- A **requirement definition** is authoritative only when found in a `.md` file under:
+  - `user-requirements/`
+  - `design/`
+- Requirement definitions shall be inside a recognizable container section whose title includes **`Requirement Definitions`** (for example: `## User Requirement Definitions`, `## Design Requirement Definitions`, `## Design Component Definitions`).
+- Inside that container, each requirement definition is a subsection header in this form:
+  - `### <REQ-ID> - <Short title>` (examples: `### UR-021 - Save/Load Compatibility`, `### DC-20 - Gameplay State Manager`)
+- The subsection body shall include:
+  - higher-level requirement references (if any)
+  - the requirement definition content.
+- IDs appearing in examples, code snippets, tables, or plain text **outside recognized definition sections** are not counted as requirement definitions.
+- Existing requirement/design tables should be expanded into these sections; tables are reference views, not authoritative definition sources for extraction.
 
 ## Applicable Source Languages and File Types
 Based on `architecture\language-and-scripting-guidance.md`, extraction support shall include:
@@ -46,11 +60,12 @@ Based on `architecture\language-and-scripting-guidance.md`, extraction support s
 
 ### 2) Marker Extraction Module
 - Language profile registry: comment syntax + regex patterns per extension.
-- Extract:
+- Extract trace markers:
   - requirement IDs (`UR-*`, `DR-*`, `DC-*`, `TC-*`, etc.)
   - explicit trace links (`TRACE:*`)
   - file/line provenance.
 - Fallback extractor runs for unknown extensions to still detect marker patterns.
+- Markdown definition extraction is a separate step with strict section/header rules (see **Authoritative Requirement Definition Rules**); marker extraction alone does not establish requirement definitions.
 
 ### 3) Trace Graph Builder
 - Normalize extracted IDs.
@@ -94,10 +109,12 @@ Based on `architecture\language-and-scripting-guidance.md`, extraction support s
 - Unit test suite in xUnit for:
   1. Marker parsing per language profile.
   2. Fallback parsing for unknown file types.
-  3. Graph building and layer classification.
-  4. Unmapped requirement detection rules.
-  5. JSON/JSONL serialization contract and deterministic output ordering.
-  6. CLI exit-code behavior for success/failure scenarios.
+  3. Requirement-definition section detection and `<ID> - <title>` header parsing in Markdown.
+  4. Rejection of accidental IDs found only in examples/tables/outside recognized definition sections.
+  5. Graph building and layer classification.
+  6. Unmapped requirement detection rules.
+  7. JSON/JSONL serialization contract and deterministic output ordering.
+  8. CLI exit-code behavior for success/failure scenarios.
 
 ## Non-Functional Design Notes
 - Deterministic output ordering for repeatable CI and AI diffing.

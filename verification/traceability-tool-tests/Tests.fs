@@ -19,6 +19,20 @@ let private writeText (path: string) (content: string) =
 
     File.WriteAllText(path, content)
 
+let private userDefinitions (sections: string list) =
+    String.concat
+        "\n"
+        ([ "# User Requirements"
+           "## User Requirement Definitions" ]
+         @ sections)
+
+let private designDefinitions (sections: string list) =
+    String.concat
+        "\n"
+        ([ "# Design Requirements"
+           "## Design Requirement Definitions" ]
+         @ sections)
+
 [<Fact>]
 let ``extractFromFile parses REQ and TRACE markers`` () =
     let root = createTempRoot ()
@@ -30,6 +44,7 @@ let ``extractFromFile parses REQ and TRACE markers`` () =
     Assert.Single(result.Requirements) |> ignore
     Assert.Single(result.Links) |> ignore
     Assert.Equal("DC-100", result.Requirements.Head.Id)
+    Assert.Equal(Marker, result.Requirements.Head.SourceKind)
     Assert.Equal("DC-100", result.Links.Head.FromId)
     Assert.Equal("TC-100", result.Links.Head.ToId)
 
@@ -42,11 +57,56 @@ let ``extractFromFile fallback works for unknown extension`` () =
     let result = MarkerExtraction.extractFromFile filePath
     Assert.Single(result.Requirements) |> ignore
     Assert.Equal("DC-101", result.Requirements.Head.Id)
+    Assert.Equal(Marker, result.Requirements.Head.SourceKind)
+
+[<Fact>]
+let ``definition extraction parses recognized requirement definition section`` () =
+    let root = createTempRoot ()
+    let filePath = Path.Combine(root, "design", "definitions.md")
+
+    let content =
+        designDefinitions
+            [ "### DC-010 - Gameplay State Manager"
+              "Higher-level: UR-010"
+              "Definition: Manages gameplay state transitions."
+              "REQ:UR-010" ]
+
+    writeText filePath content
+    let result = DefinitionExtraction.extractFromFile filePath
+
+    Assert.Single(result.Requirements) |> ignore
+    Assert.Equal("DC-010", result.Requirements.Head.Id)
+    Assert.Equal(Definition, result.Requirements.Head.SourceKind)
+
+[<Fact>]
+let ``definition extraction ignores IDs outside recognized definition section`` () =
+    let root = createTempRoot ()
+    let filePath = Path.Combine(root, "design", "examples.md")
+
+    let content =
+        String.concat
+            "\n"
+            [ "# Design Examples"
+              "## Example Table"
+              "| ID | Value |"
+              "|---|---|"
+              "| DC-999 | Example only |"
+              "### DC-888 - Looks like header but outside recognized container"
+              "Definition: Should not count." ]
+
+    writeText filePath content
+    let result = DefinitionExtraction.extractFromFile filePath
+    Assert.Empty(result.Requirements)
 
 [<Fact>]
 let ``analyzeRoot reports unmapped user requirement`` () =
     let root = createTempRoot ()
-    writeText (Path.Combine(root, "user-requirements", "ur.md")) "REQ:UR-001"
+
+    writeText
+        (Path.Combine(root, "user-requirements", "ur.md"))
+        (userDefinitions
+            [ "### UR-001 - Tactical Squad Focus"
+              "Definition: Core user requirement." ])
 
     let report = ToolRunner.analyzeRoot root
     let unmapped = report.Findings |> List.filter (fun f -> f.Id = "UR-001")
@@ -55,8 +115,20 @@ let ``analyzeRoot reports unmapped user requirement`` () =
 [<Fact>]
 let ``analyzeRoot maps user to design and design to implementation and test`` () =
     let root = createTempRoot ()
-    writeText (Path.Combine(root, "user-requirements", "ur.md")) "REQ:UR-010"
-    writeText (Path.Combine(root, "design", "design.md")) "REQ:UR-010\nREQ:DC-010"
+
+    writeText
+        (Path.Combine(root, "user-requirements", "ur.md"))
+        (userDefinitions
+            [ "### UR-010 - State Clarity"
+              "Definition: UI indicates state." ])
+
+    writeText
+        (Path.Combine(root, "design", "design.md"))
+        (designDefinitions
+            [ "### DC-010 - HUD State Component"
+              "Higher-level: REQ:UR-010"
+              "Definition: Displays state." ])
+
     writeText (Path.Combine(root, "implementation", "impl.fs")) "// REQ:DC-010"
     writeText (Path.Combine(root, "verification", "test.fs")) "// REQ:DC-010"
 
@@ -74,11 +146,13 @@ let ``toJson output ordering is deterministic by id`` () =
             [ { Id = "UR-2"
                 RequirementLayer = User
                 SourceLayer = User
+                SourceKind = Definition
                 FilePath = "b.md"
                 Line = 1 }
               { Id = "UR-1"
                 RequirementLayer = User
                 SourceLayer = User
+                SourceKind = Definition
                 FilePath = "a.md"
                 Line = 1 } ]
           Links = []
@@ -95,7 +169,12 @@ let ``toJson output ordering is deterministic by id`` () =
 let ``cli analyze returns non-zero for policy violations`` () =
     let root = createTempRoot ()
     let outputDir = Path.Combine(root, "out")
-    writeText (Path.Combine(root, "user-requirements", "ur.md")) "REQ:UR-200"
+
+    writeText
+        (Path.Combine(root, "user-requirements", "ur.md"))
+        (userDefinitions
+            [ "### UR-200 - Coverage Policy"
+              "Definition: Must be traced." ])
 
     let result = Cli.run [| "analyze"; "--root"; root; "--output-dir"; outputDir |]
 
@@ -106,8 +185,20 @@ let ``cli analyze returns non-zero for policy violations`` () =
 let ``cli export jsonl writes ai consumable file`` () =
     let root = createTempRoot ()
     let outputDir = Path.Combine(root, "out")
-    writeText (Path.Combine(root, "user-requirements", "ur.md")) "REQ:UR-300"
-    writeText (Path.Combine(root, "design", "design.md")) "REQ:UR-300\nREQ:DC-300"
+
+    writeText
+        (Path.Combine(root, "user-requirements", "ur.md"))
+        (userDefinitions
+            [ "### UR-300 - Export Baseline"
+              "Definition: export should produce machine-readable output." ])
+
+    writeText
+        (Path.Combine(root, "design", "design.md"))
+        (designDefinitions
+            [ "### DC-300 - Export Support Component"
+              "Higher-level: REQ:UR-300"
+              "Definition: supports export behavior." ])
+
     writeText (Path.Combine(root, "implementation", "impl.fs")) "// REQ:DC-300"
     writeText (Path.Combine(root, "verification", "test.fs")) "// REQ:DC-300"
 

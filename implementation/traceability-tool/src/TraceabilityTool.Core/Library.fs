@@ -18,10 +18,15 @@ type Severity =
     | Warning
     | Error
 
+type RequirementSource =
+    | Definition
+    | Marker
+
 type RequirementRef =
     { Id: string
       RequirementLayer: Layer
       SourceLayer: Layer
+      SourceKind: RequirementSource
       FilePath: string
       Line: int }
 
@@ -97,6 +102,12 @@ module private Layering =
         | Implementation -> "implementation"
         | Test -> "test"
         | Unknown -> "unknown"
+
+module private RequirementSourcing =
+    let toText =
+        function
+        | Definition -> "definition"
+        | Marker -> "marker"
 
 module SourceDiscovery =
     let private excludedDirs = Set.ofList [ ".git"; ".vs"; "bin"; "obj"; "node_modules" ]
@@ -188,6 +199,7 @@ module MarkerExtraction =
                             else
                                 inferredLayer
                           SourceLayer = sourceLayer
+                          SourceKind = Marker
                           FilePath = filePath
                           Line = index + 1 }))
                 |> Seq.concat
@@ -224,6 +236,98 @@ module MarkerExtraction =
               Links = []
               Diagnostics = [] }
 
+module DefinitionExtraction =
+    type ExtractionResult =
+        { Requirements: RequirementRef list
+          Diagnostics: Diagnostic list }
+
+    let private headingRegex = Regex(@"^(#{1,6})\s+(.+?)\s*$", RegexOptions.Compiled)
+
+    let private definitionHeaderRegex =
+        Regex(@"^#{1,6}\s+([A-Za-z][A-Za-z0-9_-]*-\d+)\s*-\s+.+$", RegexOptions.Compiled)
+
+    let private definitionIdRegex =
+        Regex(@"^#{1,6}\s+([A-Za-z][A-Za-z0-9_-]*-\d+)\s*-\s+.+$", RegexOptions.Compiled)
+
+    let private isAuthoritativeMarkdownPath (filePath: string) =
+        let normalized = filePath.Replace('\\', '/').ToLowerInvariant()
+        let isMd = normalized.EndsWith(".md")
+        isMd && (normalized.Contains("/user-requirements/") || normalized.Contains("/design/"))
+
+    let private readLinesSafely (filePath: string) =
+        try
+            Result.Ok(File.ReadAllLines(filePath))
+        with _ ->
+            Result.Error
+                { Severity = Warning
+                  Message = "Unable to read markdown file for requirement definition extraction."
+                  FilePath = Some filePath
+                  Line = None }
+
+    let extractFromFile (filePath: string) =
+        if not (isAuthoritativeMarkdownPath filePath) then
+            { Requirements = []; Diagnostics = [] }
+        else
+            match readLinesSafely filePath with
+            | Result.Error diag ->
+                { Requirements = []
+                  Diagnostics = [ diag ] }
+            | Result.Ok lines ->
+                let sourceLayer = Layering.fromPath filePath
+                let mutable currentContainerLevel: int option = None
+                let refs = ResizeArray<RequirementRef>()
+
+                for index in 0 .. lines.Length - 1 do
+                    let line = lines.[index]
+                    let headingMatch = headingRegex.Match(line)
+
+                    if headingMatch.Success then
+                        let headingLevel = headingMatch.Groups.[1].Value.Length
+                        let headingTitle = headingMatch.Groups.[2].Value.Trim()
+
+                        match currentContainerLevel with
+                        | Some containerLevel when headingLevel <= containerLevel ->
+                            currentContainerLevel <- None
+                        | _ -> ()
+
+                        if headingTitle.IndexOf("Requirement Definitions", StringComparison.OrdinalIgnoreCase) >= 0 then
+                            currentContainerLevel <- Some headingLevel
+                        else
+                            match currentContainerLevel with
+                            | Some containerLevel when headingLevel > containerLevel && definitionHeaderRegex.IsMatch(line) ->
+                                let idMatch = definitionIdRegex.Match(line)
+
+                                if idMatch.Success then
+                                    let id = idMatch.Groups.[1].Value
+                                    let inferredLayer = Layering.fromId id
+
+                                    refs.Add(
+                                        { Id = id
+                                          RequirementLayer =
+                                            if inferredLayer = Unknown then
+                                                sourceLayer
+                                            else
+                                                inferredLayer
+                                          SourceLayer = sourceLayer
+                                          SourceKind = Definition
+                                          FilePath = filePath
+                                          Line = index + 1 }
+                                    )
+                            | _ -> ()
+
+                { Requirements = refs |> Seq.toList
+                  Diagnostics = [] }
+
+    let extractFromFiles (files: string list) =
+        files
+        |> List.map extractFromFile
+        |> List.fold
+            (fun acc next ->
+                { Requirements = acc.Requirements @ next.Requirements
+                  Diagnostics = acc.Diagnostics @ next.Diagnostics })
+            { Requirements = []
+              Diagnostics = [] }
+
 module MappingAnalysis =
     let private uniqueIdsBy predicate (requirements: RequirementRef list) =
         requirements
@@ -246,6 +350,12 @@ module MappingAnalysis =
                     r.RequirementLayer = upperLayer
                     && r.SourceLayer = upperLayer)
                 requirements
+            |> Set.filter (fun id ->
+                requirements
+                |> List.exists (fun r ->
+                    r.Id = id
+                    && r.SourceLayer = upperLayer
+                    && r.SourceKind = Definition))
 
         let mappedIds =
             upperIds
@@ -282,19 +392,23 @@ module MappingAnalysis =
         let designTestFindings, designTestCoverage =
             evaluateTransition "design->test" Design Test requirements links
 
-        let knownIds = requirements |> List.map (fun r -> r.Id) |> Set.ofList
+        let knownDefinitionIds =
+            requirements
+            |> List.filter (fun r -> r.SourceKind = Definition)
+            |> List.map (fun r -> r.Id)
+            |> Set.ofList
 
         let danglingDiagnostics =
             links
             |> List.collect (fun l ->
-                [ if not (knownIds.Contains(l.FromId)) then
+                [ if not (knownDefinitionIds.Contains(l.FromId)) then
+                       { Severity = Warning
+                         Message = $"TRACE source '{l.FromId}' is not declared in authoritative requirement definitions."
+                         FilePath = Some l.EvidenceFile
+                         Line = Some l.EvidenceLine }
+                  if not (knownDefinitionIds.Contains(l.ToId)) then
                       { Severity = Warning
-                        Message = $"TRACE source '{l.FromId}' is not declared by a REQ marker."
-                        FilePath = Some l.EvidenceFile
-                        Line = Some l.EvidenceLine }
-                  if not (knownIds.Contains(l.ToId)) then
-                      { Severity = Warning
-                        Message = $"TRACE target '{l.ToId}' is not declared by a REQ marker."
+                        Message = $"TRACE target '{l.ToId}' is not declared in authoritative requirement definitions."
                         FilePath = Some l.EvidenceFile
                         Line = Some l.EvidenceLine } ])
 
@@ -319,6 +433,7 @@ module OutputFormatting =
                 {| id = r.Id
                    requirementLayer = Layering.toText r.RequirementLayer
                    sourceLayer = Layering.toText r.SourceLayer
+                   sourceKind = RequirementSourcing.toText r.SourceKind
                    file = r.FilePath
                    line = r.Line |})
 
@@ -449,8 +564,13 @@ module ToolRunner =
             SourceDiscovery.discoverFiles [ root ]
             |> SourceDiscovery.filterSupportedFiles
 
-        let extraction = MarkerExtraction.extractFromFiles files
-        MappingAnalysis.analyze extraction.Requirements extraction.Links extraction.Diagnostics
+        let markerExtraction = MarkerExtraction.extractFromFiles files
+        let definitionExtraction = DefinitionExtraction.extractFromFiles files
+
+        let allRequirements = markerExtraction.Requirements @ definitionExtraction.Requirements
+        let allDiagnostics = markerExtraction.Diagnostics @ definitionExtraction.Diagnostics
+
+        MappingAnalysis.analyze allRequirements markerExtraction.Links allDiagnostics
 
     let private hasPolicyViolations report =
         report.Findings |> List.exists (fun f -> f.Severity = Error)
