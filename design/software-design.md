@@ -27,7 +27,7 @@ Define software design components (modules, tools, and services) that realize `U
 | DC-11 | Mission Designer | Tool (editor) | Unreal Editor extensions + data schemas | Author spawn/save/objective/event/trigger mission data and behavior links. | DC-13 | UR-012 |
 | DC-12 | Asset/Content Validator | Tool (external) | F# (.NET), optional C# host | Validate mission links, spawn validity, schema conformance, content integrity. | DC-10, DC-11 | UR-011, UR-012, UR-015, UR-018 |
 | DC-21 | Requirements Traceability Tooling | Tool (external) | F# (.NET), optional C# host + SQLite/JSON | Maintain requirement-design-implementation-verification link records and provide query/report generation for conformance status. | None (foundational) | UR-015, UR-018, UR-022 |
-| DC-22 | Planning & Execution Tracking Tooling | Tool (external/process support) | F#/.NET + SQL + Markdown automation | Maintain actionable work backlog, dependency tracking, and execution report synchronization with traceability links. | DC-21 | UR-018, UR-022 |
+| DC-22 | Planning & Execution Tracking Tooling | Deprecated (out of scope) | N/A | Out of scope for this project. UR-018 and UR-022 process coverage is provided by DC-21 requirements traceability tooling. | N/A | N/A (covered by DC-21) |
 | DC-13 | Diagnostics API & Logging | Service/runtime support | Unreal C++, structured logs | Expose runtime diagnostics via logs/API, component traces, AI decision traces. | DC-01..DC-11 | UR-016, UR-018 |
 | DC-14 | Telemetry & Dashboard | Service | TS/JS or .NET service + storage | Ingest diagnostics, provide dashboards for iteration/debug loops. | DC-13 | UR-016, UR-018 |
 | DC-15 | Automated Verification Pipeline | Service/automation | CI + PowerShell/Bash + F# tooling | Build/test orchestration, requirement-mapped test evidence publishing. | DC-12, DC-13, DC-19, DC-21 | UR-015, UR-018, UR-021, UR-022 |
@@ -122,10 +122,6 @@ Define software design components (modules, tools, and services) that realize `U
 - Higher-level requirements: UR-015, UR-018, UR-022
 - Definition: Foundational external tooling maintaining requirement-design-implementation-verification links and generating conformance trace reports.
 
-### DC-22 - Planning and Execution Tracking Tooling
-- Higher-level requirements: UR-018, UR-022
-- Definition: External process-support tooling maintaining work backlog/dependencies and synchronizing execution reporting with trace links.
-
 ## Integration and Data Contracts
 - Runtime modules exchange state through explicit interfaces/events, with DC-20 as authoritative gameplay state source (squad state, engagement state, rewind state, UI state).
 - Mission and level authoring outputs are versioned data assets consumed by runtime modules.
@@ -142,4 +138,5 @@ Define software design components (modules, tools, and services) that realize `U
 ## Traceability Notes
 - Full requirement coverage target: `UR-001`..`UR-022`.
 - Asset planning reference: `design\asset-needs-by-requirement.md`.
+- DC-22 is deprecated/out of scope for implementation; UR-018 and UR-022 process coverage is handled by DC-21.
 - Architecture references: `architecture\architecture-breakdown.md`, `architecture\technology-candidates.md`.

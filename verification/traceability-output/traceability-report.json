@@ -3,14 +3,14 @@
     {
       "mappedCount": 9,
       "transition": "design-\u003Eimplementation",
-      "unmappedCount": 21,
-      "upperCount": 30
+      "unmappedCount": 20,
+      "upperCount": 29
     },
     {
       "mappedCount": 9,
       "transition": "design-\u003Etest",
-      "unmappedCount": 21,
-      "upperCount": 30
+      "unmappedCount": 20,
+      "upperCount": 29
     },
     {
       "mappedCount": 22,
@@ -313,20 +313,6 @@
       "reason": "No trace mapping from design to test.",
       "severity": "error",
       "suggestedAction": "Add REQ:DC-20 or TRACE:DC-20-\u003E\u003Ctarget\u003E in test artifacts."
-    },
-    {
-      "expectedDownstreamLayer": "implementation",
-      "id": "DC-22",
-      "reason": "No trace mapping from design to implementation.",
-      "severity": "error",
-      "suggestedAction": "Add REQ:DC-22 or TRACE:DC-22-\u003E\u003Ctarget\u003E in implementation artifacts."
-    },
-    {
-      "expectedDownstreamLayer": "test",
-      "id": "DC-22",
-      "reason": "No trace mapping from design to test.",
-      "severity": "error",
-      "suggestedAction": "Add REQ:DC-22 or TRACE:DC-22-\u003E\u003Ctarget\u003E in test artifacts."
     }
   ],
   "links": [
@@ -619,14 +605,6 @@
       "toId": "DC-21"
     },
     {
-      "evidenceFile": ".\\design\\software-design.md",
-      "evidenceLayer": "design",
-      "evidenceLine": 126,
-      "fromId": "UR-018",
-      "relation": "higher-level",
-      "toId": "DC-22"
-    },
-    {
       "evidenceFile": ".\\design\\traceability-tool-design.md",
       "evidenceLayer": "design",
       "evidenceLine": 36,
@@ -713,14 +691,6 @@
       "fromId": "UR-022",
       "relation": "higher-level",
       "toId": "DC-21"
-    },
-    {
-      "evidenceFile": ".\\design\\software-design.md",
-      "evidenceLayer": "design",
-      "evidenceLine": 126,
-      "fromId": "UR-022",
-      "relation": "higher-level",
-      "toId": "DC-22"
     },
     {
       "evidenceFile": ".\\design\\traceability-tool-design.md",
@@ -1003,14 +973,6 @@
       "requirementLayer": "design",
       "sourceKind": "marker",
       "sourceLayer": "test"
-    },
-    {
-      "file": ".\\design\\software-design.md",
-      "id": "DC-22",
-      "line": 125,
-      "requirementLayer": "design",
-      "sourceKind": "definition",
-      "sourceLayer": "design"
     },
     {
       "file": ".\\verification\\traceability-tool-tests\\Tests.fs",

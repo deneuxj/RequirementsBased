@@ -1,19 +1,19 @@
 # Traceability Summary
 
-Requirements extracted: 95
-Links extracted: 55
-Findings: 42
+Requirements extracted: 94
+Links extracted: 53
+Findings: 40
 Diagnostics: 2
 
 ## design->implementation
-- Upper requirements: 30
+- Upper requirements: 29
 - Mapped: 9
-- Unmapped: 21
+- Unmapped: 20
 
 ## design->test
-- Upper requirements: 30
+- Upper requirements: 29
 - Mapped: 9
-- Unmapped: 21
+- Unmapped: 20
 
 ## user->design
 - Upper requirements: 22
@@ -61,5 +61,3 @@ Diagnostics: 2
 - DC-19 -> test: No trace mapping from design to test.
 - DC-20 -> implementation: No trace mapping from design to implementation.
 - DC-20 -> test: No trace mapping from design to test.
-- DC-22 -> implementation: No trace mapping from design to implementation.
-- DC-22 -> test: No trace mapping from design to test.

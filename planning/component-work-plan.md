@@ -18,9 +18,8 @@ This plan orders implementation work based on design component dependencies in `
 
 ### Phase 0 - Process and traceability foundation (first)
 1. **DC-21 Requirements Traceability Tooling**
-2. **DC-22 Planning & Execution Tracking Tooling**
 
-**Why first:** Establishes the requirements-based, traceable development process and reporting backbone before feature implementation (`UR-022`, `UR-018`, `UR-015`).
+**Why first:** Establishes the requirements-based, traceable development process and reporting backbone before feature implementation (`UR-022`, `UR-018`, `UR-015`) via DC-21.
 **Asset focus:** no major gameplay assets; create templates/schemas for trace links, report formats, and tooling configuration artifacts.
 
 ### Phase 1 - Core runtime foundations
@@ -67,7 +66,6 @@ This plan orders implementation work based on design component dependencies in `
 **Asset focus:** acquire/create platform packaging assets (icons/templates), benchmark scenes, and performance test content (UR-019, UR-020).
 
 ## Parallelization Opportunities
-- **DC-22** can start once **DC-21** trace schema/contracts are stable.
 - **DC-10** and **DC-11** can run in parallel once **DC-13** is available.
 - **DC-14** can start as soon as stable diagnostics events exist from **DC-13**.
 - **DC-03** and **DC-07** should start after **DC-20** gameplay state contracts are stable.

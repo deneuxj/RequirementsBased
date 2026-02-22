@@ -27,7 +27,6 @@
 {"recordType":"requirement","value":{"file":".\\implementation\\traceability-tool\\src\\TraceabilityTool.Cli\\Program.fs","id":"DC-21","line":1,"requirementLayer":"design","sourceKind":"marker","sourceLayer":"implementation"}}
 {"recordType":"requirement","value":{"file":".\\implementation\\traceability-tool\\src\\TraceabilityTool.Core\\Library.fs","id":"DC-21","line":1,"requirementLayer":"design","sourceKind":"marker","sourceLayer":"implementation"}}
 {"recordType":"requirement","value":{"file":".\\verification\\traceability-tool-tests\\Tests.fs","id":"DC-21","line":1,"requirementLayer":"design","sourceKind":"marker","sourceLayer":"test"}}
-{"recordType":"requirement","value":{"file":".\\design\\software-design.md","id":"DC-22","line":125,"requirementLayer":"design","sourceKind":"definition","sourceLayer":"design"}}
 {"recordType":"requirement","value":{"file":".\\verification\\traceability-tool-tests\\Tests.fs","id":"DC-300","line":234,"requirementLayer":"design","sourceKind":"marker","sourceLayer":"test"}}
 {"recordType":"requirement","value":{"file":".\\verification\\traceability-tool-tests\\Tests.fs","id":"DC-300","line":235,"requirementLayer":"design","sourceKind":"marker","sourceLayer":"test"}}
 {"recordType":"requirement","value":{"file":".\\design\\traceability-tool-design.md","id":"TC-004","line":90,"requirementLayer":"test","sourceKind":"marker","sourceLayer":"design"}}
@@ -129,7 +128,6 @@
 {"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":94,"fromId":"UR-018","relation":"higher-level","toId":"DC-14"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":98,"fromId":"UR-018","relation":"higher-level","toId":"DC-15"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":122,"fromId":"UR-018","relation":"higher-level","toId":"DC-21"}}
-{"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":126,"fromId":"UR-018","relation":"higher-level","toId":"DC-22"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\traceability-tool-design.md","evidenceLayer":"design","evidenceLine":36,"fromId":"UR-018","relation":"higher-level","toId":"TTR-003"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\traceability-tool-design.md","evidenceLayer":"design","evidenceLine":40,"fromId":"UR-018","relation":"higher-level","toId":"TTR-004"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\traceability-tool-design.md","evidenceLayer":"design","evidenceLine":44,"fromId":"UR-018","relation":"higher-level","toId":"TTR-005"}}
@@ -141,7 +139,6 @@
 {"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":118,"fromId":"UR-021","relation":"higher-level","toId":"DC-20"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":98,"fromId":"UR-022","relation":"higher-level","toId":"DC-15"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":122,"fromId":"UR-022","relation":"higher-level","toId":"DC-21"}}
-{"recordType":"link","value":{"evidenceFile":".\\design\\software-design.md","evidenceLayer":"design","evidenceLine":126,"fromId":"UR-022","relation":"higher-level","toId":"DC-22"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\traceability-tool-design.md","evidenceLayer":"design","evidenceLine":28,"fromId":"UR-022","relation":"higher-level","toId":"TTR-001"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\traceability-tool-design.md","evidenceLayer":"design","evidenceLine":32,"fromId":"UR-022","relation":"higher-level","toId":"TTR-002"}}
 {"recordType":"link","value":{"evidenceFile":".\\design\\traceability-tool-design.md","evidenceLayer":"design","evidenceLine":36,"fromId":"UR-022","relation":"higher-level","toId":"TTR-003"}}
@@ -188,10 +185,8 @@
 {"recordType":"finding","value":{"expectedDownstreamLayer":"test","id":"DC-19","reason":"No trace mapping from design to test.","severity":"error","suggestedAction":"Add REQ:DC-19 or TRACE:DC-19-\u003E\u003Ctarget\u003E in test artifacts."}}
 {"recordType":"finding","value":{"expectedDownstreamLayer":"implementation","id":"DC-20","reason":"No trace mapping from design to implementation.","severity":"error","suggestedAction":"Add REQ:DC-20 or TRACE:DC-20-\u003E\u003Ctarget\u003E in implementation artifacts."}}
 {"recordType":"finding","value":{"expectedDownstreamLayer":"test","id":"DC-20","reason":"No trace mapping from design to test.","severity":"error","suggestedAction":"Add REQ:DC-20 or TRACE:DC-20-\u003E\u003Ctarget\u003E in test artifacts."}}
-{"recordType":"finding","value":{"expectedDownstreamLayer":"implementation","id":"DC-22","reason":"No trace mapping from design to implementation.","severity":"error","suggestedAction":"Add REQ:DC-22 or TRACE:DC-22-\u003E\u003Ctarget\u003E in implementation artifacts."}}
-{"recordType":"finding","value":{"expectedDownstreamLayer":"test","id":"DC-22","reason":"No trace mapping from design to test.","severity":"error","suggestedAction":"Add REQ:DC-22 or TRACE:DC-22-\u003E\u003Ctarget\u003E in test artifacts."}}
 {"recordType":"diagnostic","value":{"filePath":".\\verification\\traceability-tool-tests\\Tests.fs","line":41,"message":"TRACE source \u0027DC-100\u0027 is not declared in authoritative requirement definitions.","severity":"warning"}}
 {"recordType":"diagnostic","value":{"filePath":".\\verification\\traceability-tool-tests\\Tests.fs","line":41,"message":"TRACE target \u0027TC-100\u0027 is not declared in authoritative requirement definitions.","severity":"warning"}}
-{"recordType":"coverage","value":{"mappedCount":9,"transition":"design-\u003Eimplementation","unmappedCount":21,"upperCount":30}}
-{"recordType":"coverage","value":{"mappedCount":9,"transition":"design-\u003Etest","unmappedCount":21,"upperCount":30}}
+{"recordType":"coverage","value":{"mappedCount":9,"transition":"design-\u003Eimplementation","unmappedCount":20,"upperCount":29}}
+{"recordType":"coverage","value":{"mappedCount":9,"transition":"design-\u003Etest","unmappedCount":20,"upperCount":29}}
 {"recordType":"coverage","value":{"mappedCount":22,"transition":"user-\u003Edesign","unmappedCount":0,"upperCount":22}}
