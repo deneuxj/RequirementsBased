@@ -67,7 +67,7 @@ let ``definition extraction parses recognized requirement definition section`` (
     let content =
         designDefinitions
             [ "### DC-010 - Gameplay State Manager"
-              "Higher-level: UR-010"
+              "- Higher-level requirements: UR-010"
               "Definition: Manages gameplay state transitions."
               "REQ:UR-010" ]
 
@@ -77,6 +77,10 @@ let ``definition extraction parses recognized requirement definition section`` (
     Assert.Single(result.Requirements) |> ignore
     Assert.Equal("DC-010", result.Requirements.Head.Id)
     Assert.Equal(Definition, result.Requirements.Head.SourceKind)
+    Assert.Single(result.Links) |> ignore
+    Assert.Equal("UR-010", result.Links.Head.FromId)
+    Assert.Equal("DC-010", result.Links.Head.ToId)
+    Assert.Equal("higher-level", result.Links.Head.Relation)
 
 [<Fact>]
 let ``definition extraction ignores IDs outside recognized definition section`` () =
@@ -97,6 +101,24 @@ let ``definition extraction ignores IDs outside recognized definition section`` 
     writeText filePath content
     let result = DefinitionExtraction.extractFromFile filePath
     Assert.Empty(result.Requirements)
+    Assert.Empty(result.Links)
+
+[<Fact>]
+let ``definition extraction does not create links for Higher-level requirements None`` () =
+    let root = createTempRoot ()
+    let filePath = Path.Combine(root, "design", "definitions.md")
+
+    let content =
+        designDefinitions
+            [ "### DC-011 - Standalone Requirement"
+              "- Higher-level requirements: None"
+              "Definition: No upstream links." ]
+
+    writeText filePath content
+    let result = DefinitionExtraction.extractFromFile filePath
+
+    Assert.Single(result.Requirements) |> ignore
+    Assert.Empty(result.Links)
 
 [<Fact>]
 let ``analyzeRoot reports unmapped user requirement`` () =
@@ -126,7 +148,7 @@ let ``analyzeRoot maps user to design and design to implementation and test`` ()
         (Path.Combine(root, "design", "design.md"))
         (designDefinitions
             [ "### DC-010 - HUD State Component"
-              "Higher-level: REQ:UR-010"
+              "- Higher-level requirements: UR-010"
               "Definition: Displays state." ])
 
     writeText (Path.Combine(root, "implementation", "impl.fs")) "// REQ:DC-010"
@@ -196,7 +218,7 @@ let ``cli export jsonl writes ai consumable file`` () =
         (Path.Combine(root, "design", "design.md"))
         (designDefinitions
             [ "### DC-300 - Export Support Component"
-              "Higher-level: REQ:UR-300"
+              "- Higher-level requirements: UR-300"
               "Definition: supports export behavior." ])
 
     writeText (Path.Combine(root, "implementation", "impl.fs")) "// REQ:DC-300"

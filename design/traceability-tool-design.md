@@ -20,6 +20,41 @@ Define the design of a traceability tool that supports requirements-based delive
 | TTR-005 | Implement the tool in F#. |
 | TTR-006 | Provide unit tests using xUnit. |
 | TTR-007 | Identify requirement definitions only from recognized requirement-definition sections in Markdown requirement/design artifacts to avoid accidental matches from examples. |
+| TTR-008 | Detect mappings declared in requirement-definition bodies via the `Higher-level requirements:` field, without requiring explicit `REQ:`/`TRACE:` markers for those specific definition-to-definition links. |
+
+## Tool Requirement Definitions
+
+### TTR-001 - Layer-to-Layer Mapping
+- Higher-level requirements: UR-015, UR-022
+- Definition: The tool shall map requirements across user->design, design->implementation, and design->test transitions.
+
+### TTR-002 - Unmapped Requirement Detection
+- Higher-level requirements: UR-015, UR-022
+- Definition: The tool shall detect and report unmapped requirements for required layer transitions.
+
+### TTR-003 - Marker and Identifier Extraction
+- Higher-level requirements: UR-018, UR-022
+- Definition: The tool shall extract traceability markers and requirement identifiers from supported source file types.
+
+### TTR-004 - AI-Consumable Output
+- Higher-level requirements: UR-018, UR-022
+- Definition: The tool shall produce outputs in machine-friendly formats suitable for AI processing.
+
+### TTR-005 - F# Implementation
+- Higher-level requirements: UR-018
+- Definition: The tool implementation shall be in F#.
+
+### TTR-006 - xUnit Unit Tests
+- Higher-level requirements: UR-015
+- Definition: The tool shall include unit tests implemented with xUnit.
+
+### TTR-007 - Authoritative Definition Recognition
+- Higher-level requirements: UR-022
+- Definition: The tool shall treat requirement definitions as authoritative only when extracted from recognized Requirement Definitions sections in Markdown under user-requirements/ or design/.
+
+### TTR-008 - Higher-Level Mapping Inference
+- Higher-level requirements: UR-015, UR-022
+- Definition: The tool shall infer trace links from each requirement listed in a definition section's `Higher-level requirements:` field to the requirement defined by that section header.
 
 ## Authoritative Requirement Definition Rules
 - A **requirement definition** is authoritative only when found in a `.md` file under:
@@ -31,6 +66,10 @@ Define the design of a traceability tool that supports requirements-based delive
 - The subsection body shall include:
   - higher-level requirement references (if any)
   - the requirement definition content.
+- Higher-level requirement references in subsection bodies should use this recognizable field:
+  - `- Higher-level requirements: <ID>, <ID>, ...`
+  - `- Higher-level requirements: None`
+- For recognized definition sections, the tool shall treat IDs listed in `Higher-level requirements:` as authoritative upstream links to the current section requirement ID.
 - IDs appearing in examples, code snippets, tables, or plain text **outside recognized definition sections** are not counted as requirement definitions.
 - Existing requirement/design tables should be expanded into these sections; tables are reference views, not authoritative definition sources for extraction.
 
@@ -66,6 +105,7 @@ Based on `architecture\language-and-scripting-guidance.md`, extraction support s
   - file/line provenance.
 - Fallback extractor runs for unknown extensions to still detect marker patterns.
 - Markdown definition extraction is a separate step with strict section/header rules (see **Authoritative Requirement Definition Rules**); marker extraction alone does not establish requirement definitions.
+- Markdown definition extraction also parses `Higher-level requirements:` fields inside recognized definition sections and emits inferred definition-to-definition links.
 
 ### 3) Trace Graph Builder
 - Normalize extracted IDs.
@@ -79,6 +119,7 @@ Based on `architecture\language-and-scripting-guidance.md`, extraction support s
   - user->design
   - design->implementation
   - design->test
+- Consider both explicit marker-based links (`REQ:`/`TRACE:`) and inferred links from definition `Higher-level requirements:` fields.
 - Detect unmapped nodes:
   - no downstream links where required
   - dangling references to missing IDs.
@@ -110,11 +151,12 @@ Based on `architecture\language-and-scripting-guidance.md`, extraction support s
   1. Marker parsing per language profile.
   2. Fallback parsing for unknown file types.
   3. Requirement-definition section detection and `<ID> - <title>` header parsing in Markdown.
-  4. Rejection of accidental IDs found only in examples/tables/outside recognized definition sections.
-  5. Graph building and layer classification.
-  6. Unmapped requirement detection rules.
-  7. JSON/JSONL serialization contract and deterministic output ordering.
-  8. CLI exit-code behavior for success/failure scenarios.
+  4. `Higher-level requirements:` field parsing and inferred link generation.
+  5. Rejection of accidental IDs found only in examples/tables/outside recognized definition sections.
+  6. Graph building and layer classification.
+  7. Unmapped requirement detection rules.
+  8. JSON/JSONL serialization contract and deterministic output ordering.
+  9. CLI exit-code behavior for success/failure scenarios.
 
 ## Non-Functional Design Notes
 - Deterministic output ordering for repeatable CI and AI diffing.

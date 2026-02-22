@@ -239,6 +239,7 @@ module MarkerExtraction =
 module DefinitionExtraction =
     type ExtractionResult =
         { Requirements: RequirementRef list
+          Links: TraceLink list
           Diagnostics: Diagnostic list }
 
     let private headingRegex = Regex(@"^(#{1,6})\s+(.+?)\s*$", RegexOptions.Compiled)
@@ -249,10 +250,29 @@ module DefinitionExtraction =
     let private definitionIdRegex =
         Regex(@"^#{1,6}\s+([A-Za-z][A-Za-z0-9_-]*-\d+)\s*-\s+.+$", RegexOptions.Compiled)
 
+    let private higherLevelRegex =
+        Regex(@"^\s*-\s*Higher-level requirements\s*:\s*(.+)\s*$", RegexOptions.Compiled ||| RegexOptions.IgnoreCase)
+
+    let private referenceIdRegex =
+        Regex(@"^(?:REQ:)?([A-Za-z][A-Za-z0-9_-]*-\d+)$", RegexOptions.Compiled ||| RegexOptions.IgnoreCase)
+
     let private isAuthoritativeMarkdownPath (filePath: string) =
         let normalized = filePath.Replace('\\', '/').ToLowerInvariant()
         let isMd = normalized.EndsWith(".md")
         isMd && (normalized.Contains("/user-requirements/") || normalized.Contains("/design/"))
+
+    let private parseHigherLevelIds (rawValue: string) =
+        let value = rawValue.Trim()
+
+        if value.Equals("None", StringComparison.OrdinalIgnoreCase) then
+            []
+        else
+            value.Split(',', StringSplitOptions.RemoveEmptyEntries)
+            |> Array.map (fun token -> token.Trim())
+            |> Array.choose (fun token ->
+                let m = referenceIdRegex.Match(token)
+                if m.Success then Some m.Groups.[1].Value else None)
+            |> Array.toList
 
     let private readLinesSafely (filePath: string) =
         try
@@ -266,16 +286,21 @@ module DefinitionExtraction =
 
     let extractFromFile (filePath: string) =
         if not (isAuthoritativeMarkdownPath filePath) then
-            { Requirements = []; Diagnostics = [] }
+            { Requirements = []
+              Links = []
+              Diagnostics = [] }
         else
             match readLinesSafely filePath with
             | Result.Error diag ->
                 { Requirements = []
+                  Links = []
                   Diagnostics = [ diag ] }
             | Result.Ok lines ->
                 let sourceLayer = Layering.fromPath filePath
                 let mutable currentContainerLevel: int option = None
+                let mutable currentDefinition: (string * int) option = None
                 let refs = ResizeArray<RequirementRef>()
+                let links = ResizeArray<TraceLink>()
 
                 for index in 0 .. lines.Length - 1 do
                     let line = lines.[index]
@@ -285,9 +310,15 @@ module DefinitionExtraction =
                         let headingLevel = headingMatch.Groups.[1].Value.Length
                         let headingTitle = headingMatch.Groups.[2].Value.Trim()
 
+                        match currentDefinition with
+                        | Some(_, definitionLevel) when headingLevel <= definitionLevel ->
+                            currentDefinition <- None
+                        | _ -> ()
+
                         match currentContainerLevel with
                         | Some containerLevel when headingLevel <= containerLevel ->
                             currentContainerLevel <- None
+                            currentDefinition <- None
                         | _ -> ()
 
                         if headingTitle.IndexOf("Requirement Definitions", StringComparison.OrdinalIgnoreCase) >= 0 then
@@ -300,6 +331,7 @@ module DefinitionExtraction =
                                 if idMatch.Success then
                                     let id = idMatch.Groups.[1].Value
                                     let inferredLayer = Layering.fromId id
+                                    currentDefinition <- Some(id, headingLevel)
 
                                     refs.Add(
                                         { Id = id
@@ -314,8 +346,33 @@ module DefinitionExtraction =
                                           Line = index + 1 }
                                     )
                             | _ -> ()
+                    else
+                        match currentDefinition with
+                        | Some(currentId, _) ->
+                            let higherLevelMatch = higherLevelRegex.Match(line)
+
+                            if higherLevelMatch.Success then
+                                let upstreamIds = parseHigherLevelIds higherLevelMatch.Groups.[1].Value
+
+                                upstreamIds
+                                |> List.iter (fun upstreamId ->
+                                    links.Add(
+                                        { FromId = upstreamId
+                                          ToId = currentId
+                                          Relation = "higher-level"
+                                          EvidenceFile = filePath
+                                          EvidenceLine = index + 1
+                                          EvidenceLayer = sourceLayer }
+                                    ))
+                        | None -> ()
+
+                let distinctLinks =
+                    links
+                    |> Seq.distinctBy (fun l -> l.FromId, l.ToId, l.Relation, l.EvidenceFile, l.EvidenceLine)
+                    |> Seq.toList
 
                 { Requirements = refs |> Seq.toList
+                  Links = distinctLinks
                   Diagnostics = [] }
 
     let extractFromFiles (files: string list) =
@@ -324,8 +381,10 @@ module DefinitionExtraction =
         |> List.fold
             (fun acc next ->
                 { Requirements = acc.Requirements @ next.Requirements
+                  Links = acc.Links @ next.Links
                   Diagnostics = acc.Diagnostics @ next.Diagnostics })
             { Requirements = []
+              Links = []
               Diagnostics = [] }
 
 module MappingAnalysis =
@@ -568,9 +627,10 @@ module ToolRunner =
         let definitionExtraction = DefinitionExtraction.extractFromFiles files
 
         let allRequirements = markerExtraction.Requirements @ definitionExtraction.Requirements
+        let allLinks = markerExtraction.Links @ definitionExtraction.Links
         let allDiagnostics = markerExtraction.Diagnostics @ definitionExtraction.Diagnostics
 
-        MappingAnalysis.analyze allRequirements markerExtraction.Links allDiagnostics
+        MappingAnalysis.analyze allRequirements allLinks allDiagnostics
 
     let private hasPolicyViolations report =
         report.Findings |> List.exists (fun f -> f.Severity = Error)
